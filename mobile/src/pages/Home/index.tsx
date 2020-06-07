@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
-import { View, ImageBackground, Image, StyleSheet, Text } from 'react-native';
+import { View, ImageBackground, Image, StyleSheet, Text, TextInput } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import RNPickerSelect from 'react-native-picker-select';
 
 const Home = () => {
     const navigation = useNavigation();
+
+    const [uf, setUf] = useState('');
+    const [city, setCity] = useState('');
     
     function handleNavigateToPoints(){
-        navigation.navigate('Points');
+        navigation.navigate('Points', {
+            uf,
+            city
+        });
     };
 
     return (
@@ -25,6 +32,24 @@ const Home = () => {
             </View>
 
             <View style={styles.footer}> 
+                <TextInput 
+                    style={styles.input}
+                    placeholder="Digita a UF"
+                    value={uf}
+                    maxLength={2}
+                    autoCapitalize="characters"
+                    autoCorrect={false}
+                    onChangeText={setUf}
+                />
+
+                <TextInput 
+                    style={styles.input}
+                    placeholder="Digita a Cidade"
+                    value={city}
+                    autoCorrect={false}
+                    onChangeText={setCity}
+                />
+
                 <RectButton style={styles.button} onPress={handleNavigateToPoints}>
                     <View style={styles.buttonIcon}>
                         <Text>
@@ -74,7 +99,15 @@ const styles = StyleSheet.create({
   
     footer: {},
   
-    select: {},
+    select: {
+        height: 60,
+        backgroundColor: '#FFF',
+        borderRadius: 10,
+        marginBottom: 8,
+        paddingHorizontal: 24,
+        fontSize: 16,
+
+    },
   
     input: {
         height: 60,
