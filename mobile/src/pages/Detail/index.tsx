@@ -14,7 +14,7 @@ const Detail = () => {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, paddingVertical: 8 }}>
             <View style={styles.container}>
                 <TouchableOpacity onPress={handleNavigateBack}>
                     <Icon name="arrow-left" size={20} color="#34cb79"/>
@@ -47,8 +47,8 @@ const Detail = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      padding: 32,
-      paddingTop: 20,
+      paddingHorizontal: 32,
+      paddingTop: 28,
     },
   
     pointImage: {
